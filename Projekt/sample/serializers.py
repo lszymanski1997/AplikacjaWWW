@@ -1,4 +1,5 @@
 from rest_framework import serializers
+import rest_framework.validators
 from .models import Osoba, Druzyna
 
 
@@ -19,3 +20,11 @@ class OsobaSerializer(serializers.Serializer):
         instance.druzyna = validated_data.get('druzyna', instance.druzyna)
         instance.save()
         return instance
+
+    def validate_imie(self, value):
+        if not value.istitle():
+            raise serializers.ValidationError(
+                "Nazwa osoby powinna rozpoczynać się wielką literą!",
+            )
+        return value
+
