@@ -21,10 +21,3 @@ class OsobaSerializer(serializers.Serializer):
         instance.save()
         return instance
 
-    def validate_imie(self, value):
-        if not value.istitle():
-            raise serializers.ValidationError(
-                "Nazwa osoby powinna rozpoczynać się wielką literą!",
-            )
-        return value
-
