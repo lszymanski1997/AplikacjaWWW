@@ -7,5 +7,4 @@ urlpatterns = [
     path('osoby/<int:pk>/', views.osoba_detail),
     path("osoby/update/<int:pk>", views.osoba_update_delete),
     path("osoby/delete/<int:pk>", views.osoba_update_delete),
-    path('api-auth/', include('rest_framework.urls'))
 ]
