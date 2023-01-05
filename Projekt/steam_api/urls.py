@@ -1,8 +1,13 @@
-from django.db import models
-from django.utils.translation import gettext_lazy as _
+from django.urls import path
+from . import views
 
-class User(models.model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=100)
-    steam_id = models.CharField(max_length=2, choices=MIESIAC.choices, default=MIESIAC.STYCZEN)
-    data_dodania = models.DateField(auto_now_add=True)
+app_name = "steam_api"
+
+urlpatterns = [
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('home/', views.home, name='home'),
+    path('user/', views.UserViewList.as_view(), name='user_list'),
+    path('user/<pk>', views.UserDetailView.as_view(), name='user_detail'),
+    path('changeUID/<pk>', views.Add_Uid.as_view(), name='changeUID'),
+]
