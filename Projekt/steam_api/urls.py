@@ -1,13 +1,16 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 app_name = "steam_api"
 
 urlpatterns = [
     path('register/', views.register, name='register'),
-    path('login/', views.login, name='login'),
-    path('home/', views.home, name='home'),
-    path('user/', views.UserViewList.as_view(), name='user_list'),
-    path('user/<pk>', views.UserDetailView.as_view(), name='user_detail'),
-    path('changeUID/<pk>', views.Add_Uid.as_view(), name='changeUID'),
+    path('refresh/', views.refresh_game_list, name='refresh'),
+    path('add_review/', views.add_review, name="add_review"),
+    path('review/', views.review_list),
+    path('game/', views.game_list),
+    path('game/<int:pk>', views.game_detail),
+    path('review/<int:pk>', views.review_detail),
+
 ]
