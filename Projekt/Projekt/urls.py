@@ -15,9 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+
 
 urlpatterns = [
     path('sample/', include('sample.urls')),
     path('admin/', admin.site.urls),
-    path('steam/', include('steam_api.urls', namespace='steam'))
+    path('steam/', include('steam_api.urls', namespace='steam')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
 ]
